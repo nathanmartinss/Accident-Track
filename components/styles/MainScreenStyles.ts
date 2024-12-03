@@ -7,10 +7,11 @@ const MainScreenStyles = StyleSheet.create({
   },
   header: {
     fontFamily: "Jomhuria-Regular",
-    fontSize: 30,
+    fontSize: 40,
     textAlign: "center",
     marginVertical: 10,
     color: "black",
+    fontWeight: "bold",
   },
   contentContainer: {
     paddingBottom: 80,

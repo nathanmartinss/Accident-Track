@@ -9,9 +9,10 @@ const StartingScreenStyles = StyleSheet.create({
   },
   title: {
     fontFamily: "Jomhuria-Regular",
-    fontSize: 40,
+    fontSize: 96,
     textAlign: "center",
     color: "black",
+    fontWeight: "bold",
   },
   button: {
     marginTop: 20,
@@ -23,7 +24,7 @@ const StartingScreenStyles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontFamily: "Jomhuria-Regular",
-    fontSize: 20,
+    fontSize: 40,
   },
 });
 

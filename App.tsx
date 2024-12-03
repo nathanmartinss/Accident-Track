@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StartingScreen from "./components/StartingScreen";
 import MainScreen from "./components/MainScreen";
-import { RootStackParamList } from "../app-accidenttrack/constants/Types";
+import { RootStackParamList } from "../app-accidenttrack/constants/types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
