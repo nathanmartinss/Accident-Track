@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const MainScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#D3D3D3",
   },
   header: {
     fontFamily: "Jomhuria-Regular",
