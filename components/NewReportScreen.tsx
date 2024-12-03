@@ -37,23 +37,29 @@ const NewReportScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <TouchableOpacity style={styles.locationButton} onPress={getLocation}>
-          <Image
-            source={require("../../app-accidenttrack/assets/images/location-icon.png")}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.addPhotoButton} onPress={pickImage}>
-          {image ? (
-            <Image source={{ uri: image }} style={styles.icon} />
-          ) : (
+        <View style={styles.buttonWithLabel}>
+          <TouchableOpacity style={styles.locationButton} onPress={getLocation}>
             <Image
-              source={require("../assets/images/add-photo-icon.png")}
+              source={require("../../app-accidenttrack/assets/images/location-icon.png")}
               style={styles.icon}
             />
-          )}
-        </TouchableOpacity>
+          </TouchableOpacity>
+          <Text style={styles.buttonLabel}>Localização</Text>
+        </View>
+
+        <View style={styles.buttonWithLabel}>
+          <TouchableOpacity style={styles.addPhotoButton} onPress={pickImage}>
+            {image ? (
+              <Image source={{ uri: image }} style={styles.icon} />
+            ) : (
+              <Image
+                source={require("../assets/images/add-photo-icon.png")}
+                style={styles.icon}
+              />
+            )}
+          </TouchableOpacity>
+          <Text style={styles.buttonLabel}>Foto do Incidente</Text>
+        </View>
       </View>
 
       <ScrollView contentContainerStyle={styles.tagsContainer}>

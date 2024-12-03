@@ -8,8 +8,14 @@ const NewReportScreenStyles = StyleSheet.create({
   },
   imageContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 20,
+    gap: 20,
+  },
+  buttonWithLabel: {
+    alignItems: "center",
+    marginHorizontal: 15,
   },
   locationButton: {
     width: 100,
@@ -30,6 +36,13 @@ const NewReportScreenStyles = StyleSheet.create({
   icon: {
     width: 50,
     height: 50,
+  },
+  buttonLabel: {
+    marginTop: 10,
+    color: "#ffffff",
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "center",
   },
   tagsContainer: {
     flexDirection: "row",
