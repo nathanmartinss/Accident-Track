@@ -48,7 +48,8 @@ const MainScreen: React.FC = () => {
               <TouchableOpacity
                 style={modalStyles.postButton}
                 onPress={() => {
-                  // Logica pra postar o
+                  // Ronaldo coloca a lógica aqui de apertar o botão de postar, q n sei como vai ser ainda
+
                   alert("Relatório postado!");
                   setModalVisible(false);
                 }}
