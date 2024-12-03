@@ -36,6 +36,10 @@ const NewReportScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      {/* Título do Modal */}
+      <Text style={styles.title}>Novo Incidente</Text>
+
+      {/* Botões para Localização e Adicionar Foto */}
       <View style={styles.imageContainer}>
         <View style={styles.buttonWithLabel}>
           <TouchableOpacity style={styles.locationButton} onPress={getLocation}>
@@ -62,6 +66,11 @@ const NewReportScreen: React.FC = () => {
         </View>
       </View>
 
+      {/* Seção de Tags */}
+      <Text style={styles.tagsTitle}>Tags</Text>
+      <Text style={styles.tagsDescription}>
+        Marque as tags que descrevam os incidentes relatados nas fotos.
+      </Text>
       <ScrollView contentContainerStyle={styles.tagsContainer}>
         {[
           "Incêndio",

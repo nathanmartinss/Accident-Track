@@ -6,6 +6,13 @@ const NewReportScreenStyles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#595959",
   },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#ffffff",
+    textAlign: "center",
+    marginBottom: 20,
+  },
   imageContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -42,6 +49,19 @@ const NewReportScreenStyles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 14,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  tagsTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#ffffff",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  tagsDescription: {
+    fontSize: 14,
+    color: "#d3d3d3",
+    marginBottom: 20,
     textAlign: "center",
   },
   tagsContainer: {
