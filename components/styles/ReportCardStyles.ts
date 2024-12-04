@@ -35,7 +35,7 @@ const ReportCardStyles = StyleSheet.create({
     marginBottom: 8,
   },
   detailsText: {
-    fontFamily: "SpaceMono-Regular",
+    fontFamily: "Roboto-Thin",
     fontSize: 16,
     marginLeft: 8,
     color: "#333",

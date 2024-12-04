@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   RefreshControl,
+  Alert,
 } from "react-native";
 import ReportCard from "../components/ReportCard";
 import NewReportScreen from "../components/NewReportScreen";
@@ -21,6 +22,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth"; // Importa função de login e logout do Firebase
 import {
   MainScreenStyles as styles,
   modalStyles,
@@ -51,6 +53,7 @@ const MainScreen: React.FC = () => {
   const [newIncident, setNewIncident] = useState<Incident | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [user, setUser] = useState(auth.currentUser);
+  const [isSigningOut, setIsSigningOut] = useState(false); // Estado para controlar o processo de logout
 
   const router = useRouter();
 
@@ -121,6 +124,32 @@ const MainScreen: React.FC = () => {
     setNewIncident(incidentData);
   };
 
+  // Função para deslogar o usuário
+  const handleSignOut = async () => {
+    setIsSigningOut(true); // Indica que o logout está em progresso
+    try {
+      await signOut(auth);
+      setUser(null); // Atualiza o estado do usuário para null após o logout
+      Alert.alert("Desconectado", "Você foi desconectado com sucesso.");
+    } catch (error) {
+      console.error("Erro ao deslogar: ", error);
+      Alert.alert("Erro", "Não foi possível desconectar. Tente novamente.");
+    } finally {
+      setIsSigningOut(false); // Conclui o logout
+    }
+  };
+
+  // Função para fazer login com Google (ou outro provedor)
+  const handleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      setUser(result.user);
+    } catch (error) {
+      console.error("Erro ao fazer login: ", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Cabeçalho com título e ícones de navegação */}
@@ -138,7 +167,7 @@ const MainScreen: React.FC = () => {
             if (user) {
               router.push("/profile");
             } else {
-              alert("Por favor, faça login primeiro.");
+              handleLogin();
             }
           }}
         >
@@ -184,7 +213,7 @@ const MainScreen: React.FC = () => {
           if (user) {
             setModalVisible(true);
           } else {
-            alert("Por favor, faça login primeiro.");
+            handleLogin();
           }
         }}
       >

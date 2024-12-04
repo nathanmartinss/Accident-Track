@@ -20,7 +20,7 @@ const MainScreenStyles = StyleSheet.create({
     padding: 10,
   },
   headerTitle: {
-    fontFamily: "Jomhuria-Regular",
+    fontFamily: "Jomhuria-Regular", // Mantido pois se trata do título
     fontSize: 36,
     color: "black",
     fontWeight: "bold",
@@ -41,12 +41,18 @@ const MainScreenStyles = StyleSheet.create({
     shadowRadius: 4,
   },
   resolvedCard: {
-    backgroundColor: "#d4edda", // Verde claro para indicativo de resolvido
+    backgroundColor: "#d4edda",
     borderColor: "#c3e6cb",
   },
   unresolvedCard: {
-    backgroundColor: "#f8d7da", // Vermelho claro para indicativo de não resolvido
+    backgroundColor: "#f8d7da",
     borderColor: "#f5c6cb",
+  },
+  cardText: {
+    fontFamily: "Roboto-Thin", // Adiciona fonte Roboto-Thin para o texto dos cards
+    color: "#333",
+    fontSize: 16,
+    marginBottom: 8,
   },
   fab: {
     position: "absolute",
@@ -105,6 +111,7 @@ const modalStyles = StyleSheet.create({
     width: "48%",
   },
   buttonText: {
+    fontFamily: "Roboto-Thin", // Fonte Roboto-Thin para os botões do modal
     color: "white",
     fontWeight: "bold",
     fontSize: 16,

@@ -10,6 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { signOut } from "firebase/auth"; // Importa função para deslogar do Firebase
 import { db, auth } from "../firebaseConfig";
 import { ProfileScreenStyles as styles } from "../components/styles/ProfileScreenStyles";
 import { useRouter } from "expo-router"; // Importa o roteador para navegar
@@ -77,9 +78,20 @@ const ProfileScreen: React.FC = () => {
     }
   };
 
+  // Função para deslogar o usuário
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth); // Desconecta o usuário atual do Firebase
+      router.push("/"); // Redireciona para a tela inicial após deslogar
+    } catch (error) {
+      console.error("Erro ao deslogar: ", error);
+      Alert.alert("Erro", "Não foi possível desconectar. Tente novamente.");
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* Cabeçalho com botão de voltar */}
+      {/* Cabeçalho com botão de voltar e botão de desconectar */}
       <View style={styles.headerContainer}>
         <TouchableOpacity
           style={styles.iconButton}
@@ -87,9 +99,16 @@ const ProfileScreen: React.FC = () => {
         >
           <Ionicons name="arrow-back" size={28} color="black" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Minhas Postagens</Text>
+        <Text style={styles.headerTitle}>ACCIDENT TRACK</Text>
+        <TouchableOpacity style={styles.iconButton} onPress={handleSignOut}>
+          <Ionicons name="log-out-outline" size={28} color="black" />
+        </TouchableOpacity>
       </View>
 
+      {/* Título da página */}
+      <Text style={styles.screenTitle}>MINHAS POSTAGENS</Text>
+
+      {/* Conteúdo da página */}
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {incidents.map((incident) => (
           <View
@@ -111,7 +130,12 @@ const ProfileScreen: React.FC = () => {
               resolved={incident.resolved} // Passa a informação de resolvido para o ReportCard
             />
             <TouchableOpacity
-              style={styles.resolveButton}
+              style={[
+                styles.resolveButton,
+                incident.resolved
+                  ? styles.resolveButtonUnresolved
+                  : styles.resolveButtonResolved,
+              ]}
               onPress={() =>
                 handleResolveIncident(incident.id!, incident.resolved || false)
               }

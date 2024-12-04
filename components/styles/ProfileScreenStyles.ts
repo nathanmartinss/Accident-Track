@@ -10,29 +10,37 @@ const ProfileScreenStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === "android" ? 30 : 50, // Compensação para Android/iOS
+    paddingTop: Platform.OS === "ios" ? 50 : 30,
     paddingBottom: 10,
     backgroundColor: "#ffffff",
-    elevation: 4,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
   iconButton: {
-    padding: 5,
+    padding: 10,
   },
   headerTitle: {
     fontFamily: "Jomhuria-Regular",
-    fontSize: 30,
-    textAlign: "center",
+    fontSize: 36,
     color: "black",
     fontWeight: "bold",
-    flex: 1, // Faz o título ocupar o espaço restante
+    textAlign: "center",
+    flex: 8,
+  },
+  backIconWrapper: {
+    flex: 1,
   },
   contentContainer: {
     paddingBottom: 80,
     paddingHorizontal: 10,
+  },
+  screenTitle: {
+    fontFamily: "Jomhuria-Regular",
+    fontSize: 36,
+    textAlign: "center",
+    color: "black",
+    fontWeight: "bold",
+    marginVertical: 20,
   },
   reportCard: {
     backgroundColor: "#ffffff",
@@ -54,12 +62,17 @@ const ProfileScreenStyles = StyleSheet.create({
     borderWidth: 2,
   },
   resolveButton: {
-    backgroundColor: "#007bff",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     alignItems: "center",
     marginTop: 10,
+  },
+  resolveButtonResolved: {
+    backgroundColor: "green",
+  },
+  resolveButtonUnresolved: {
+    backgroundColor: "red",
   },
   resolveButtonText: {
     color: "white",
