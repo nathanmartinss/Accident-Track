@@ -154,7 +154,3 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para 
 Sinta-se à vontade para contribuir e melhorar este projeto! Esperamos que o **Accident Track** possa ser útil para você e para a sua comunidade, ajudando a aumentar a segurança e a conscientização sobre desastres naturais e outros incidentes.
 
 **Accident Track Team** 🚀
-
----
-
-Este README fornece uma visão completa do projeto, instruções claras de instalação e execução, e dá o devido crédito a cada membro da equipe. Se precisar de mais ajustes ou tiver dúvidas, estarei por aqui para ajudar! 😊
