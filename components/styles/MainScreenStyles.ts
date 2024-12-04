@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const MainScreenStyles = StyleSheet.create({
   container: {
@@ -14,36 +14,55 @@ const MainScreenStyles = StyleSheet.create({
     fontWeight: "bold",
   },
   contentContainer: {
-    paddingBottom: 80,
+    paddingBottom: 100,
+    paddingHorizontal: 10,
   },
   fab: {
     position: "absolute",
     right: 20,
     bottom: 20,
     backgroundColor: "red",
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
+    elevation: 10,
   },
   fabText: {
     color: "white",
-    fontSize: 24,
+    fontSize: 28,
+    fontWeight: "bold",
   },
   reportCard: {
-    backgroundColor: "#d3d3d3",
+    backgroundColor: "#ffffff",
     borderRadius: 10,
-    padding: 10,
+    padding: 15,
+    marginHorizontal: 10,
     marginBottom: 20,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   reportDetails: {
     marginTop: 10,
   },
   reportText: {
-    color: "#000",
-    fontSize: 14,
+    color: "#333",
+    fontSize: 16,
+    marginBottom: 8,
+    fontFamily: "SpaceMono-Regular",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 5,
+  },
+  icon: {
+    marginRight: 8,
+    color: "#444",
   },
 });
 
@@ -51,36 +70,43 @@ const modalStyles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalContent: {
     backgroundColor: "#595959",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
-    elevation: 5,
+    width: "100%",
+    maxHeight: "85%",
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
+    paddingHorizontal: 10,
+    paddingBottom: Platform.OS === "ios" ? 40 : 20,
   },
   cancelButton: {
-    backgroundColor: "red",
-    paddingVertical: 10,
+    backgroundColor: "#ff6347",
+    paddingVertical: 14,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    marginRight: 10,
+    borderRadius: 8,
+    alignItems: "center",
+    width: "48%",
   },
   postButton: {
-    backgroundColor: "red",
-    paddingVertical: 10,
+    backgroundColor: "#32cd32",
+    paddingVertical: 14,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 8,
+    alignItems: "center",
+    width: "48%",
   },
   buttonText: {
     color: "white",
     fontWeight: "bold",
+    fontSize: 16,
   },
 });
 
