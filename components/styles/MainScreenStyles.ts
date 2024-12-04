@@ -5,17 +5,48 @@ const MainScreenStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#D3D3D3",
   },
-  header: {
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    paddingTop: Platform.OS === "ios" ? 50 : 30,
+    paddingBottom: 10,
+    backgroundColor: "#ffffff",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  iconButton: {
+    padding: 10,
+  },
+  headerTitle: {
     fontFamily: "Jomhuria-Regular",
-    fontSize: 40,
-    textAlign: "center",
-    marginVertical: 10,
+    fontSize: 36,
     color: "black",
     fontWeight: "bold",
   },
   contentContainer: {
     paddingBottom: 100,
     paddingHorizontal: 10,
+  },
+  reportCard: {
+    borderRadius: 10,
+    padding: 15,
+    marginHorizontal: 10,
+    marginBottom: 20,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  resolvedCard: {
+    backgroundColor: "#d4edda", // Verde claro para indicativo de resolvido
+    borderColor: "#c3e6cb",
+  },
+  unresolvedCard: {
+    backgroundColor: "#f8d7da", // Vermelho claro para indicativo de não resolvido
+    borderColor: "#f5c6cb",
   },
   fab: {
     position: "absolute",
@@ -33,36 +64,6 @@ const MainScreenStyles = StyleSheet.create({
     color: "white",
     fontSize: 28,
     fontWeight: "bold",
-  },
-  reportCard: {
-    backgroundColor: "#ffffff",
-    borderRadius: 10,
-    padding: 15,
-    marginHorizontal: 10,
-    marginBottom: 20,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  reportDetails: {
-    marginTop: 10,
-  },
-  reportText: {
-    color: "#333",
-    fontSize: 16,
-    marginBottom: 8,
-    fontFamily: "SpaceMono-Regular",
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 5,
-  },
-  icon: {
-    marginRight: 8,
-    color: "#444",
   },
 });
 

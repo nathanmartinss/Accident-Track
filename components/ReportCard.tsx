@@ -1,6 +1,11 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { FontAwesome, MaterialIcons, Entypo } from "@expo/vector-icons"; // Importa os ícones do Expo para usar no componente
+import {
+  FontAwesome,
+  MaterialIcons,
+  Entypo,
+  Feather,
+} from "@expo/vector-icons"; // Importa os ícones do Expo
 import styles from "../components/styles/ReportCardStyles"; // Importa os estilos personalizados do ReportCard
 
 // Define os tipos dos props que o componente aceita
@@ -14,6 +19,8 @@ interface ReportCardProps {
     address?: string; // Endereço completo do incidente (opcional)
   };
   tags?: string[]; // Lista de tags para categorizar o incidente (opcional)
+  resolved?: boolean; // Status do incidente (resolvido ou não resolvido)
+  userName?: string; // Nome do usuário que postou o incidente (opcional)
 }
 
 // Componente funcional ReportCard que aceita os props definidos na interface
@@ -22,9 +29,16 @@ const ReportCard: React.FC<ReportCardProps> = ({
   timestamp, // Data e hora do incidente
   location, // Localização do incidente
   tags, // Tags associadas ao incidente
+  resolved, // Status do incidente
+  userName, // Nome do usuário que postou
 }) => {
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        resolved ? styles.resolvedCard : styles.unresolvedCard,
+      ]}
+    >
       {/* Exibe a imagem do incidente */}
       <Image source={imageSource} style={styles.image} />
 
@@ -74,6 +88,33 @@ const ReportCard: React.FC<ReportCardProps> = ({
             <Text style={styles.detailsText}>Tags: {tags.join(", ")}</Text>
           </View>
         )}
+
+        {/* Exibe o nome do usuário que postou o incidente, se estiver disponível */}
+        {userName && (
+          <View style={styles.row}>
+            {/* Ícone de usuário para indicar o autor da postagem */}
+            <Feather name="user" size={20} color="#444" />
+            {/* Texto com o nome do usuário */}
+            <Text style={styles.detailsText}>Postado por: {userName}</Text>
+          </View>
+        )}
+
+        {/* Exibe o status do incidente (Resolvido/Não Resolvido) */}
+        <View style={styles.row}>
+          <Feather
+            name="check-circle"
+            size={20}
+            color={resolved ? "#28a745" : "#dc3545"}
+          />
+          <Text
+            style={[
+              styles.detailsText,
+              resolved ? styles.resolvedText : styles.unresolvedText,
+            ]}
+          >
+            {resolved ? "Resolvido" : "Não Resolvido"}
+          </Text>
+        </View>
       </View>
     </View>
   );

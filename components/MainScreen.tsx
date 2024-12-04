@@ -8,10 +8,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   RefreshControl,
-  ActivityIndicator,
 } from "react-native";
 import ReportCard from "../components/ReportCard";
 import NewReportScreen from "../components/NewReportScreen";
+import { Ionicons } from "@expo/vector-icons";
 import {
   collection,
   getDocs,
@@ -20,11 +20,12 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { db, auth } from "../firebaseConfig";
 import {
   MainScreenStyles as styles,
   modalStyles,
 } from "../components/styles/MainScreenStyles";
+import { useRouter } from "expo-router";
 
 interface Incident {
   id?: string;
@@ -39,52 +40,55 @@ interface Incident {
     seconds: number;
     nanoseconds: number;
   };
+  userId?: string;
+  resolved?: boolean;
+  userName?: string; // Adicionado para exibir o nome do autor
 }
 
 const MainScreen: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [newIncident, setNewIncident] = useState<Incident | null>(null);
-  const [refreshing, setRefreshing] = useState(false); // Estado para controlar a atualização da página
-  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento inicial dos dados
+  const [refreshing, setRefreshing] = useState(false);
+  const [user, setUser] = useState(auth.currentUser);
 
-  // Função para buscar incidentes no Firestore, ordenados pela data
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Função para buscar incidentes no Firestore
   const fetchIncidents = async () => {
     try {
-      setLoading(true); // Ativa o estado de carregamento enquanto busca os dados
-
-      // Cria uma consulta para a coleção "incidents" e ordena pela propriedade "timestamp" em ordem descendente
       const q = query(
         collection(db, "incidents"),
         orderBy("timestamp", "desc")
       );
-
-      // Obtém os documentos a partir da consulta
       const querySnapshot = await getDocs(q);
       const incidentsData: Incident[] = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       })) as Incident[];
-
-      // Atualiza o estado com os dados buscados
       setIncidents(incidentsData);
     } catch (error) {
       console.error("Erro ao buscar incidentes: ", error);
-    } finally {
-      setLoading(false); // Desativa o estado de carregamento
     }
   };
 
   // Função de atualização para o "pull to refresh"
   const onRefresh = async () => {
-    setRefreshing(true); // Ativa o indicador de atualização
-    await fetchIncidents(); // Busca novamente os incidentes
-    setRefreshing(false); // Desativa o indicador de atualização
+    setRefreshing(true);
+    await fetchIncidents();
+    setRefreshing(false);
   };
 
   useEffect(() => {
     fetchIncidents();
-  }, []); // Executa a função ao montar o componente
+  }, []);
 
   // Função para postar o novo incidente
   const handlePostIncident = async () => {
@@ -93,12 +97,19 @@ const MainScreen: React.FC = () => {
       return;
     }
 
+    if (!user) {
+      alert("Por favor, faça login antes de postar um incidente.");
+      return;
+    }
+
     try {
       await addDoc(collection(db, "incidents"), {
         ...newIncident,
+        userId: user.uid,
+        userName: user.displayName, // Adiciona o nome do usuário ao incidente
         timestamp: serverTimestamp(),
       });
-      fetchIncidents(); // Recarrega os incidentes para incluir o novo no feed
+      fetchIncidents();
       setModalVisible(false);
     } catch (error) {
       console.error("Erro ao postar incidente: ", error);
@@ -112,20 +123,45 @@ const MainScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>ACCIDENT TRACK</Text>
-
-      {loading ? (
-        <ActivityIndicator size="large" color="red" style={{ marginTop: 20 }} />
-      ) : (
-        <ScrollView
-          contentContainerStyle={styles.contentContainer}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
+      {/* Cabeçalho com título e ícones de navegação */}
+      <View style={styles.headerContainer}>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => router.push("/")}
         >
-          {incidents.map((incident) => (
+          <Ionicons name="arrow-back" size={28} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>ACCIDENT TRACK</Text>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => {
+            if (user) {
+              router.push("/profile");
+            } else {
+              alert("Por favor, faça login primeiro.");
+            }
+          }}
+        >
+          <Ionicons name="person-circle-outline" size={28} color="black" />
+        </TouchableOpacity>
+      </View>
+
+      {/* ScrollView que exibe os incidentes e permite atualização com "puxar para baixo" */}
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {incidents.map((incident) => (
+          <View
+            key={incident.id}
+            style={[
+              styles.reportCard,
+              incident.resolved ? styles.resolvedCard : styles.unresolvedCard,
+            ]}
+          >
             <ReportCard
-              key={incident.id}
               imageSource={{ uri: incident.imageUri }}
               timestamp={
                 incident.timestamp
@@ -134,18 +170,28 @@ const MainScreen: React.FC = () => {
               }
               location={incident.location}
               tags={incident.tags}
+              userName={incident.userName} // Adiciona o nome do autor ao card
+              resolved={incident.resolved} // Passa o status de resolução para o card
             />
-          ))}
-        </ScrollView>
-      )}
+          </View>
+        ))}
+      </ScrollView>
 
+      {/* Botão flutuante para abrir o modal de adicionar um novo incidente */}
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => setModalVisible(true)}
+        onPress={() => {
+          if (user) {
+            setModalVisible(true);
+          } else {
+            alert("Por favor, faça login primeiro.");
+          }
+        }}
       >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
 
+      {/* Modal para adicionar um novo incidente */}
       <Modal
         animationType="slide"
         transparent={true}

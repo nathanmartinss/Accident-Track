@@ -8,12 +8,23 @@ const ReportCardStyles = StyleSheet.create({
     overflow: "hidden",
     elevation: 3,
     padding: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  resolvedCard: {
+    borderColor: "#28a745",
+    borderWidth: 2,
+  },
+  unresolvedCard: {
+    borderColor: "#dc3545",
+    borderWidth: 2,
   },
   image: {
     width: "100%",
     height: 200,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderRadius: 8,
   },
   infoContainer: {
     paddingTop: 10,
@@ -21,13 +32,21 @@ const ReportCardStyles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 5,
+    marginBottom: 8,
   },
   detailsText: {
-    fontFamily: "Roboto-Thin",
+    fontFamily: "SpaceMono-Regular",
     fontSize: 16,
     marginLeft: 8,
     color: "#333",
+  },
+  resolvedText: {
+    color: "#28a745",
+    fontWeight: "bold",
+  },
+  unresolvedText: {
+    color: "#dc3545",
+    fontWeight: "bold",
   },
 });
 
