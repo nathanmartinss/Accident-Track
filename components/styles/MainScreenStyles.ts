@@ -31,6 +31,20 @@ const MainScreenStyles = StyleSheet.create({
     color: "white",
     fontSize: 24,
   },
+  reportCard: {
+    backgroundColor: "#d3d3d3",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+  },
+  reportDetails: {
+    marginTop: 10,
+  },
+  reportText: {
+    color: "#000",
+    fontSize: 14,
+    marginBottom: 5,
+  },
 });
 
 const modalStyles = StyleSheet.create({
@@ -40,7 +54,7 @@ const modalStyles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContent: {
-    backgroundColor: "white",
+    backgroundColor: "#595959",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
@@ -70,4 +84,4 @@ const modalStyles = StyleSheet.create({
   },
 });
 
-export default MainScreenStyles;
+export { MainScreenStyles, modalStyles };
