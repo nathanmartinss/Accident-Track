@@ -1,50 +1,160 @@
-# Welcome to your Expo app 👋
+# 🚨 Accident Track: Aplicativo de Monitoramento de Incidentes
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Bem-vindo ao Accident Track!** Este aplicativo foi desenvolvido para ajudar usuários a reportar, rastrear e visualizar incidentes, como **queimadas, enchentes** e outros **desastres naturais**. A aplicação permite que o usuário publique imagens, registre a localização e selecione tags relevantes para os incidentes, fornecendo uma ferramenta poderosa para alertar e compartilhar informações importantes sobre desastres.
 
-## Get started
+## 📝 Índice
 
-1. Install dependencies
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Funcionalidades](#-funcionalidades)
+- [Instalação e Execução](#-instalação-e-execução)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Equipe de Desenvolvimento](#-equipe-de-desenvolvimento)
+- [Contribuição](#-contribuição)
+- [Licença](#-licença)
 
-   ```bash
+## 📖 Sobre o Projeto
+
+O **Accident Track** é um aplicativo que visa facilitar o registro e compartilhamento de informações sobre incidentes em uma região. Este projeto tem como objetivo promover a **segurança pública**, permitindo que os usuários registrem **fotos**, **localização**, **data** e **hora** dos incidentes, bem como **tags** específicas para identificar melhor o tipo de desastre.
+
+Este aplicativo é ideal para ser usado por:
+- Comunidades que enfrentam problemas recorrentes de desastres naturais.
+- Autoridades e serviços de emergência para monitoramento de áreas afetadas.
+- Pessoas interessadas em contribuir para a conscientização pública sobre acidentes locais.
+
+## ✨ Funcionalidades
+
+- **Cadastro de Incidentes**: Os usuários podem postar fotos e informações sobre incidentes.
+- **Geolocalização**: Utilização de geolocalização para registrar o local exato do incidente.
+- **Uso de Tags**: Os usuários podem selecionar **tags predefinidas** (como queimadas, enchentes, etc.) para categorizar o tipo de incidente.
+- **Visualização de Relatórios**: Todos os incidentes registrados são exibidos em um formato de cartão, mostrando a imagem, localização, data e tags associadas.
+
+## 🚀 Instalação e Execução
+
+### Pré-requisitos
+
+Antes de começar, você precisará ter instalado em sua máquina as seguintes ferramentas:
+- [Node.js](https://nodejs.org/en/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+
+### Passos para Instalação
+
+1. **Clone o repositório**
+
+   ```sh
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   ```
+
+2. **Navegue até o diretório do projeto**
+
+   ```sh
+   cd app-accidenttrack
+   ```
+
+3. **Instale as dependências**
+
+   ```sh
    npm install
    ```
 
-2. Start the app
+4. **Configurar API Key do Google Maps**
 
-   ```bash
-    npx expo start
+   - Crie um arquivo `.env` na raiz do projeto e adicione sua chave da API do Google Maps:
+
+   ```env
+   GOOGLE_API_KEY=SUA_CHAVE_DE_API_AQUI
    ```
 
-In the output, you'll find options to open the app in a
+5. **Executar a aplicação**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```sh
+   expo start
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   Isso abrirá uma página no navegador. Você pode escanear o QR code com seu celular ou rodar o aplicativo no emulador Android/iOS.
 
-## Get a fresh project
+## 🛠 Tecnologias Utilizadas
 
-When you're ready, run:
+- **React Native & Expo**: Framework principal para construir a aplicação.
+- **Firebase Firestore**: Banco de dados em tempo real para armazenar os dados dos incidentes.
+- **Google Maps API**: Para obter o endereço através das coordenadas de localização.
+- **React Navigation & Expo Router**: Navegação entre as telas da aplicação.
+- **Figma**: Utilizado para prototipagem e design da interface do usuário.
+
+## 📁 Estrutura do Projeto
+
+A estrutura principal do projeto é a seguinte:
 
 ```bash
-npm run reset-project
+app-accidenttrack/
+├── assets/               # Arquivos estáticos (imagens, fontes)
+├── components/           # Componentes reutilizáveis
+│   ├── ReportCard.tsx    # Componente para exibir informações dos incidentes
+│   ├── NewReportScreen.tsx  # Tela para adicionar um novo incidente
+│   └── StartingScreen.tsx   # Tela inicial da aplicação
+├── styles/               # Arquivos de estilo dos componentes
+├── firebaseConfig.ts     # Configuração do Firebase
+├── App.tsx               # Arquivo principal da aplicação
+└── package.json          # Arquivo de configuração do npm
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 👥 Equipe de Desenvolvimento
 
-## Learn more
+Este projeto foi desenvolvido com a colaboração de uma equipe talentosa e dedicada, onde cada membro teve um papel fundamental:
 
-To learn more about developing your project with Expo, look at the following resources:
+- **Documentação**:
+  - Vinicius
+  - Larissa
+  - Melissa
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Design no Figma**:
+  - Caue
 
-## Join the community
+- **Backend**:
+  - Ronaldo
 
-Join our community of developers creating universal apps.
+- **Frontend**:
+  - Nathan
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Cada pessoa contribuiu para o sucesso deste projeto e agradecemos por todo o esforço e dedicação durante o desenvolvimento.
+
+## 🤝 Contribuição
+
+Contribuições são sempre bem-vindas! Se você tem sugestões de melhorias ou deseja adicionar novas funcionalidades, fique à vontade para enviar um **Pull Request** ou abrir uma **issue** no GitHub.
+
+### Como Contribuir
+
+1. **Faça um fork** do projeto.
+2. **Crie uma branch** para a nova funcionalidade:
+
+   ```sh
+   git checkout -b feature/nova-funcionalidade
+   ```
+
+3. **Commit suas alterações**:
+
+   ```sh
+   git commit -m "Adiciona nova funcionalidade"
+   ```
+
+4. **Push para a branch**:
+
+   ```sh
+   git push origin feature/nova-funcionalidade
+   ```
+
+5. **Abra um Pull Request**.
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
+
+---
+
+Sinta-se à vontade para contribuir e melhorar este projeto! Esperamos que o **Accident Track** possa ser útil para você e para a sua comunidade, ajudando a aumentar a segurança e a conscientização sobre desastres naturais e outros incidentes.
+
+**Accident Track Team** 🚀
+
+---
+
+Este README fornece uma visão completa do projeto, instruções claras de instalação e execução, e dá o devido crédito a cada membro da equipe. Se precisar de mais ajustes ou tiver dúvidas, estarei por aqui para ajudar! 😊
