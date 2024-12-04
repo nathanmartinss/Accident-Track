@@ -87,15 +87,16 @@ A estrutura principal do projeto é a seguinte:
 
 ```bash
 app-accidenttrack/
-├── assets/               # Arquivos estáticos (imagens, fontes)
-├── components/           # Componentes reutilizáveis
-│   ├── ReportCard.tsx    # Componente para exibir informações dos incidentes
+├── app/(tabs)               # Página principal e roteamentos
+│   ├── index.tsx            # Arquivo principal da aplicação
+├── assets/                  # Arquivos estáticos (imagens, fontes)
+├── components/              # Componentes reutilizáveis
+│   ├── ReportCard.tsx       # Componente para exibir informações dos incidentes
 │   ├── NewReportScreen.tsx  # Tela para adicionar um novo incidente
 │   └── StartingScreen.tsx   # Tela inicial da aplicação
-├── styles/               # Arquivos de estilo dos componentes
-├── firebaseConfig.ts     # Configuração do Firebase
-├── App.tsx               # Arquivo principal da aplicação
-└── package.json          # Arquivo de configuração do npm
+├── styles/                  # Arquivos de estilo dos componentes
+├── firebaseConfig.ts        # Configuração do Firebase
+└── package.json             # Arquivo de configuração do npm
 ```
 
 ## 👥 Equipe de Desenvolvimento
