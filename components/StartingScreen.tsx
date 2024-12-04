@@ -1,11 +1,17 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native"; // Importa componentes do React Native para construir a interface
-import { useRouter } from "expo-router"; // Importa a função `useRouter` do `expo-router` para navegação
-import styles from "./styles/StartingScreenStyles"; // Importa os estilos personalizados da tela de início
+import { View, Text, TouchableOpacity, Linking } from "react-native";
+import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons"; // Importa ícones do Ionicons
+import styles from "./styles/StartingScreenStyles";
 
 // Define o componente `StartingScreen` como um Componente Funcional do React
 const StartingScreen: React.FC = () => {
   const router = useRouter(); // Inicializa o roteador para gerenciar a navegação dentro da aplicação
+
+  // Função para realizar chamada telefônica
+  const makeCall = (phoneNumber: string) => {
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
 
   return (
     // Container principal da tela inicial
@@ -15,11 +21,74 @@ const StartingScreen: React.FC = () => {
 
       {/* Botão para navegar para a tela principal */}
       <TouchableOpacity
-        style={styles.button} // Estilo do botão para torná-lo visualmente agradável
-        onPress={() => router.push("/main")} // Ao pressionar o botão, navega para a rota `/main`
+        style={styles.button}
+        onPress={() => router.push("/main")}
       >
         <Text style={styles.buttonText}>My Location</Text>
       </TouchableOpacity>
+
+      {/* Seção de Links Úteis */}
+      <View style={styles.linksContainer}>
+        <Text style={styles.linksTitle}>Links Úteis</Text>
+
+        {/* Defesa Civil */}
+        <TouchableOpacity
+          onPress={() => makeCall("199")}
+          style={styles.linkItem}
+        >
+          <Ionicons
+            name="call"
+            size={24}
+            color="#ff6347"
+            style={styles.linkIcon}
+          />
+          <Text style={styles.linkText}>Defesa Civil - 199</Text>
+        </TouchableOpacity>
+
+        {/* SAMU */}
+        <TouchableOpacity
+          onPress={() => makeCall("192")}
+          style={styles.linkItem}
+        >
+          <Ionicons
+            name="call"
+            size={24}
+            color="#ff6347"
+            style={styles.linkIcon}
+          />
+          <Text style={styles.linkText}>SAMU - 192</Text>
+        </TouchableOpacity>
+
+        {/* Bombeiros */}
+        <TouchableOpacity
+          onPress={() => makeCall("193")}
+          style={styles.linkItem}
+        >
+          <Ionicons
+            name="call"
+            size={24}
+            color="#ff6347"
+            style={styles.linkIcon}
+          />
+          <Text style={styles.linkText}>Bombeiros - 193</Text>
+        </TouchableOpacity>
+
+        {/* IBAMA */}
+        <TouchableOpacity
+          onPress={() => makeCall("180")}
+          style={styles.linkItem}
+        >
+          <Ionicons
+            name="call"
+            size={24}
+            color="#ff6347"
+            style={styles.linkIcon}
+          />
+          <Text style={styles.linkText}>
+            IBAMA - Denúncias Ambientais - 180
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
