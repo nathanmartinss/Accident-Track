@@ -12,34 +12,22 @@ const ReportCardStyles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    borderRadius: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   infoContainer: {
-    padding: 10,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 8,
-    marginTop: 10,
-  },
-  text: {
-    fontFamily: "Roboto-Thin",
-    fontSize: 16,
-    color: "#333",
+    paddingTop: 10,
   },
   row: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 5,
-  },
-  detailsContainer: {
-    marginTop: 10,
+    marginBottom: 5,
   },
   detailsText: {
     fontFamily: "Roboto-Thin",
     fontSize: 16,
+    marginLeft: 8,
     color: "#333",
-    marginBottom: 5,
-    fontWeight: "bold",
   },
 });
 
